@@ -100,18 +100,20 @@ In the Fig.4, the similarity between the theoretical probability density functio
 ### Basic Inferential Data Analysis
 In this part, the ToothGrowth data in the R datasets package will be analysed. The data will be explored and summed up first. Then, the effect of supplementaries and the dose on the tooth growth will be examined using confidence intervals and hypothesis tests.
 
-The summary and the structure of the data set are obtained.
+After the duplicate rows are removed, the summary and the structure of the data set are obtained.
 
 ```{r echo=FALSE, eval=TRUE, data_summary}
-summary(ToothGrowth)
-str(ToothGrowth)
+library(dplyr)
+data_set <- distinct(ToothGrowth)
+summary(data_set)
+str(data_set)
 ```
 
-The unique dose values are `r unique(ToothGrowth$dose)`. To have a quick overview 
+The unique dose values are `r unique(data_set$dose)`. To have a quick overview 
 of the correlations in the data, exploratory box plots are created.
 
 ```{r echo=FALSE, eval=TRUE, box_plots, fig.height=4}
-with(ToothGrowth,{
+with(data_set,{
      par(mfrow=c(1,2))
      boxplot(len ~ supp, xlab="supp", ylab="length", main="Fig.5 Variation of length with respect to supp", cex.main=0.7)
      boxplot(len ~ dose, xlab="dose", ylab="length", main="Fig.6 Variation of length with respect to dose", cex.main=0.7)
@@ -126,9 +128,9 @@ Now, these exploratory observations will be checked using hypothesis testing. It
 ```{r echo=FALSE, eval=TRUE, group_t_test_supp}
 library(dplyr) # load the package dplyr
 # OJ supp group is created
-group_OJ <- filter(ToothGrowth, supp == "OJ")
+group_OJ <- filter(data_set, supp == "OJ")
 # VC supp group is created
-group_VC <- filter(ToothGrowth, supp == "VC")
+group_VC <- filter(data_set, supp == "VC")
 len_OJ <- group_OJ$len # OJ group lengths
 len_VC <- group_VC$len # VC group lengths
 # two-sided t test is applied
@@ -141,8 +143,8 @@ The null hypothesis and the alternative hypothesis of the two-sided t test for t
 Now, the effect of the dose on the tooth length is to be examined. First, dose 1.0 and dose 0.5 are to be compared to each other to determine if the mean tooth length differs between these two doses.
 
 ```{r echo=FALSE, eval=TRUE, group_t_test_dose}
-group_05 <- filter(ToothGrowth, dose==0.5)
-group_1 <- filter(ToothGrowth, dose==1.0)
+group_05 <- filter(data_set, dose==0.5)
+group_1 <- filter(data_set, dose==1.0)
 len_05 <- group_05$len
 len_1 <- group_1$len
 t_test_dose <- t.test(len_1, len_05, alternative = "greater", paired=FALSE,
@@ -156,7 +158,7 @@ The null hypothesis and the alternative hypothesis of the one-sided t test for t
 Now, dose 2.0 and dose 1.0 are to be compared to each other to determine if the mean tooth length differs between these two doses.
 
 ```{r echo=FALSE, eval=TRUE, group_t_test_dose_2}
-group_2 <- filter(ToothGrowth, dose==2.0)
+group_2 <- filter(data_set, dose==2.0)
 len_2 <- group_2$len
 t_test_dose2 <- t.test(len_2, len_1, alternative = "greater", paired=FALSE,
                       var.equal=FALSE)
@@ -169,6 +171,9 @@ The null hypothesis and the alternative hypothesis of the one-sided t test for t
 Hence, the t tests conclude that the dose factor has a significant effect on the tooth length. Specifically, as the dose increases, the mean tooth length increases too.
 
 ### Appendix
+
+The R code which is used to prepare this report is documented in this appendix.
+
 ```{r echo=TRUE, eval=FALSE, r_code}
 # x values for the pdf f(x)
 x <- seq(0, 30, length.out=50000)
@@ -234,35 +239,36 @@ points(the_density, type="l", col="black")
 legend("topright", legend=c("theoretical", "sample"), 
        col=c("red", "black"), pch=15, cex = the_cex, bty="n")
 title("Fig.4 theoretical vs. sample densities", cex.main=main_cex)
-summary(ToothGrowth) # data summary
-str(ToothGrowth) # data structure
+library(dplyr) # load the package dplyr
+data_set <- distinct(ToothGrowth) # remove duplicate rows
+summary(data_set) # data summary
+str(data_set) # data structure
 # boxplots for checking correlations among length, dose and supp
-with(ToothGrowth,{
+with(data_set,{
      par(mfrow=c(1,2))
      boxplot(len ~ supp, xlab="supp", ylab="length", main="Fig.5 Variation of length
              with respect to supp", cex.main=0.7)
      boxplot(len ~ dose, xlab="dose", ylab="length", main="Fig.6 Variation of length
              with respect to dose", cex.main=0.7)
      })
-library(dplyr) # load the package dplyr
 # OJ supp group is created
-group_OJ <- filter(ToothGrowth, supp == "OJ")
+group_OJ <- filter(data_set, supp == "OJ")
 # VC supp group is created
-group_VC <- filter(ToothGrowth, supp == "VC")
+group_VC <- filter(data_set, supp == "VC")
 len_OJ <- group_OJ$len # OJ group lengths
 len_VC <- group_VC$len # VC group lengths
 # two-sided t test is applied
 t_test_supp <- t.test(len_OJ, len_VC, alternative="two.sided", paired=FALSE,
                       var.equal=FALSE)
 t_test_supp
-group_05 <- filter(ToothGrowth, dose==0.5) # dose 0.5 group
-group_1 <- filter(ToothGrowth, dose==1.0) # dose 1.0 group
+group_05 <- filter(data_set, dose==0.5) # dose 0.5 group
+group_1 <- filter(data_set, dose==1.0) # dose 1.0 group
 len_05 <- group_05$len # 0.5 group lengths
 len_1 <- group_1$len # 1.0 group lengths
 # one-sided t test is applied
 t_test_dose <- t.test(len_1, len_05, alternative="greater", paired=FALSE, var.equal=FALSE)
 t_test_dose
-group_2 <- filter(ToothGrowth, dose==2.0) # dose 2.0 group
+group_2 <- filter(data_set, dose==2.0) # dose 2.0 group
 len_2 <- group_2$len # 2.0 group lengths
 # one-sided t test applied
 t_test_dose2 <- t.test(len_2, len_1, alternative="greater", paired=FALSE, var.equal=FALSE)

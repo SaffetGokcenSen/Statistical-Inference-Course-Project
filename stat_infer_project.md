@@ -18,9 +18,9 @@ Now, the sample average distribution is to be created by sampling the exponentia
 
 
 
-The sample average distribution is expected to be centered around the mean of the original exponential population with a mean of $$\frac{1}{\lambda}=\frac{1}{0.2}=5$$ The mean of the sample average distribution is 5.0271264 which is very close to the expected mean. This closeness can also be observed in the Fig.2. The sample average distribution mean and the exponentially distributed population mean are very near to each other, i.e. the red vertical line and the blue vertical line are almost overlapping.
+The sample average distribution is expected to be centered around the mean of the original exponential population with a mean of $$\frac{1}{\lambda}=\frac{1}{0.2}=5$$ The mean of the sample average distribution is 5.0217322 which is very close to the expected mean. This closeness can also be observed in the Fig.2. The sample average distribution mean and the exponentially distributed population mean are very near to each other, i.e. the red vertical line and the blue vertical line are almost overlapping.
 
-In the Fig. 3, the points one sample standard deviation away from the sample mean are shown with red vertical lines. The points one theoretical standard deviation away from the sample mean are shown with blue vertical lines. They are almost overlapping. The closeness of the standard deviations observed in the Fig. 3 can be proven using numerical values of the variances as well. The theoretical variance of the sample average distribution is given by $$\frac{\sigma^{2}}{n}=\frac{\frac{1}{\lambda^{2}}}{n}$$ The numerical value of the theoretical variance is 0.625. The variance of the sample average distribution is 0.631142. They are close to each other.
+In the Fig. 3, the points one sample standard deviation away from the sample mean are shown with red vertical lines. The points one theoretical standard deviation away from the sample mean are shown with blue vertical lines. They are almost overlapping. The closeness of the standard deviations observed in the Fig. 3 can be proven using numerical values of the variances as well. The theoretical variance of the sample average distribution is given by $$\frac{\sigma^{2}}{n}=\frac{\frac{1}{\lambda^{2}}}{n}$$ The numerical value of the theoretical variance is 0.625. The variance of the sample average distribution is 0.6151753. They are close to each other.
 
 ![plot of chunk sample_avg_histogram_mean](figure/sample_avg_histogram_mean-1.png)
 
@@ -31,24 +31,24 @@ In the Fig.4, the similarity between the theoretical probability density functio
 ### Basic Inferential Data Analysis
 In this part, the ToothGrowth data in the R datasets package will be analysed. The data will be explored and summed up first. Then, the effect of supplementaries and the dose on the tooth growth will be examined using confidence intervals and hypothesis tests.
 
-The summary and the structure of the data set are obtained.
+After the duplicate rows are removed, the summary and the structure of the data set are obtained.
 
 
 ```
 ##       len        supp         dose      
-##  Min.   : 4.20   OJ:30   Min.   :0.500  
-##  1st Qu.:13.07   VC:30   1st Qu.:0.500  
-##  Median :19.25           Median :1.000  
-##  Mean   :18.81           Mean   :1.167  
-##  3rd Qu.:25.27           3rd Qu.:2.000  
+##  Min.   : 4.20   OJ:28   Min.   :0.500  
+##  1st Qu.:14.05   VC:27   1st Qu.:0.500  
+##  Median :20.00           Median :1.000  
+##  Mean   :19.05           Mean   :1.182  
+##  3rd Qu.:25.35           3rd Qu.:2.000  
 ##  Max.   :33.90           Max.   :2.000
 ```
 
 ```
-## 'data.frame':	60 obs. of  3 variables:
-##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+## 'data.frame':	55 obs. of  3 variables:
+##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 5.2 7 16.5 ...
 ##  $ supp: Factor w/ 2 levels "OJ","VC": 2 2 2 2 2 2 2 2 2 2 ...
-##  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+##  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 1 ...
 ```
 
 The unique dose values are 0.5, 1, 2. To have a quick overview 
@@ -67,16 +67,16 @@ Now, these exploratory observations will be checked using hypothesis testing. It
 ## 	Welch Two Sample t-test
 ## 
 ## data:  len_OJ and len_VC
-## t = 1.9153, df = 55.309, p-value = 0.06063
+## t = 1.781, df = 47.907, p-value = 0.08126
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.1710156  7.5710156
+##  -0.4732938  7.8103308
 ## sample estimates:
 ## mean of x mean of y 
-##  20.66333  16.96333
+##  20.85000  17.18148
 ```
 
-The null hypothesis and the alternative hypothesis of the two-sided t test for the supp groups are as follows: $$H_{0}: \text{true difference in means is equal to zero.}$$  $$H_{a}: \text{true difference in means is not equal to zero.}$$ The p-value of the two-sided t test is 0.0606345. This p-value is greater than 0.05. Then, the alternative hypothesis is rejected. The two-sided t test states that the mean lengths of the OJ supp group and VC supp group are not significantly different from each other. Hence, it is concluded that the supp type does not have a significant effect on the tooth length.
+The null hypothesis and the alternative hypothesis of the two-sided t test for the supp groups are as follows: $$H_{0}: \text{true difference in means is equal to zero.}$$  $$H_{a}: \text{true difference in means is not equal to zero.}$$ The p-value of the two-sided t test is 0.0812592. This p-value is greater than 0.05. Then, the alternative hypothesis is rejected. The two-sided t test states that the mean lengths of the OJ supp group and VC supp group are not significantly different from each other. Hence, it is concluded that the supp type does not have a significant effect on the tooth length.
 
 Now, the effect of the dose on the tooth length is to be examined. First, dose 1.0 and dose 0.5 are to be compared to each other to determine if the mean tooth length differs between these two doses.
 
@@ -86,16 +86,16 @@ Now, the effect of the dose on the tooth length is to be examined. First, dose 1
 ## 	Welch Two Sample t-test
 ## 
 ## data:  len_1 and len_05
-## t = 6.4766, df = 37.986, p-value = 6.342e-08
+## t = 6.0799, df = 33.939, p-value = 3.416e-07
 ## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  6.753323      Inf
+##  6.805623      Inf
 ## sample estimates:
 ## mean of x mean of y 
-##    19.735    10.605
+##  20.05000  10.62222
 ```
 
-The null hypothesis and the alternative hypothesis of the one-sided t test for the dose 1.0 and dose 0.5 groups are as follows: $$H_{0}: \text{true difference in means is equal to zero.}$$  $$H_{a}: \text{true difference in means is greater than zero.}$$ The p-value of the two-sided t test is $6.3415036 &times; 10<sup>-8</sup>$. This p-value is significantly smaller than 0.05. Hence, the null hypothesis is rejected. The dose 1.0 mean length is significantly greater than the dose 0.5 mean length.
+The null hypothesis and the alternative hypothesis of the one-sided t test for the dose 1.0 and dose 0.5 groups are as follows: $$H_{0}: \text{true difference in means is equal to zero.}$$  $$H_{a}: \text{true difference in means is greater than zero.}$$ The p-value of the two-sided t test is $3.4161029 &times; 10<sup>-7</sup>$. This p-value is significantly smaller than 0.05. Hence, the null hypothesis is rejected. The dose 1.0 mean length is significantly greater than the dose 0.5 mean length.
 
 Now, dose 2.0 and dose 1.0 are to be compared to each other to determine if the mean tooth length differs between these two doses.
 
@@ -105,20 +105,23 @@ Now, dose 2.0 and dose 1.0 are to be compared to each other to determine if the 
 ## 	Welch Two Sample t-test
 ## 
 ## data:  len_2 and len_1
-## t = 4.9005, df = 37.101, p-value = 9.532e-06
+## t = 4.3299, df = 33.467, p-value = 6.391e-05
 ## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  4.17387     Inf
+##  3.676641      Inf
 ## sample estimates:
 ## mean of x mean of y 
-##    26.100    19.735
+##  26.08421  20.05000
 ```
 
-The null hypothesis and the alternative hypothesis of the one-sided t test for the dose 2.0 and dose 1.0 groups are as follows: $$H_{0}: \text{true difference in means is equal to zero.}$$  $$H_{a}: \text{true difference in means is greater than zero.}$$ The p-value of the two-sided t test is $9.5321476 &times; 10<sup>-6</sup>$. This p-value is significantly smaller than 0.05. Hence, the null hypothesis is rejected. The dose 2.0 mean length is significantly greater than the dose 1.0 mean length.
+The null hypothesis and the alternative hypothesis of the one-sided t test for the dose 2.0 and dose 1.0 groups are as follows: $$H_{0}: \text{true difference in means is equal to zero.}$$  $$H_{a}: \text{true difference in means is greater than zero.}$$ The p-value of the two-sided t test is $6.3907414 &times; 10<sup>-5</sup>$. This p-value is significantly smaller than 0.05. Hence, the null hypothesis is rejected. The dose 2.0 mean length is significantly greater than the dose 1.0 mean length.
 
 Hence, the t tests conclude that the dose factor has a significant effect on the tooth length. Specifically, as the dose increases, the mean tooth length increases too.
 
 ### Appendix
+
+The R code which is used to prepare this report is documented in this appendix.
+
 
 ```r
 # x values for the pdf f(x)
@@ -185,35 +188,36 @@ points(the_density, type="l", col="black")
 legend("topright", legend=c("theoretical", "sample"), 
        col=c("red", "black"), pch=15, cex = the_cex, bty="n")
 title("Fig.4 theoretical vs. sample densities", cex.main=main_cex)
-summary(ToothGrowth) # data summary
-str(ToothGrowth) # data structure
+library(dplyr) # load the package dplyr
+data_set <- distinct(ToothGrowth) # remove duplicate rows
+summary(data_set) # data summary
+str(data_set) # data structure
 # boxplots for checking correlations among length, dose and supp
-with(ToothGrowth,{
+with(data_set,{
      par(mfrow=c(1,2))
      boxplot(len ~ supp, xlab="supp", ylab="length", main="Fig.5 Variation of length
              with respect to supp", cex.main=0.7)
      boxplot(len ~ dose, xlab="dose", ylab="length", main="Fig.6 Variation of length
              with respect to dose", cex.main=0.7)
      })
-library(dplyr) # load the package dplyr
 # OJ supp group is created
-group_OJ <- filter(ToothGrowth, supp == "OJ")
+group_OJ <- filter(data_set, supp == "OJ")
 # VC supp group is created
-group_VC <- filter(ToothGrowth, supp == "VC")
+group_VC <- filter(data_set, supp == "VC")
 len_OJ <- group_OJ$len # OJ group lengths
 len_VC <- group_VC$len # VC group lengths
 # two-sided t test is applied
 t_test_supp <- t.test(len_OJ, len_VC, alternative="two.sided", paired=FALSE,
                       var.equal=FALSE)
 t_test_supp
-group_05 <- filter(ToothGrowth, dose==0.5) # dose 0.5 group
-group_1 <- filter(ToothGrowth, dose==1.0) # dose 1.0 group
+group_05 <- filter(data_set, dose==0.5) # dose 0.5 group
+group_1 <- filter(data_set, dose==1.0) # dose 1.0 group
 len_05 <- group_05$len # 0.5 group lengths
 len_1 <- group_1$len # 1.0 group lengths
 # one-sided t test is applied
 t_test_dose <- t.test(len_1, len_05, alternative="greater", paired=FALSE, var.equal=FALSE)
 t_test_dose
-group_2 <- filter(ToothGrowth, dose==2.0) # dose 2.0 group
+group_2 <- filter(data_set, dose==2.0) # dose 2.0 group
 len_2 <- group_2$len # 2.0 group lengths
 # one-sided t test applied
 t_test_dose2 <- t.test(len_2, len_1, alternative="greater", paired=FALSE, var.equal=FALSE)
