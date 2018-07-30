@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Statistical Inference Course Project</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>Statistical Inference Course Project</h2>
+
+<h2>Author: Saffet Gokcen Sen</h2>
+
+<p>The project consists of two parts: A simulation exercise and a basic inferential data analysis. In the simulation exercise, a sample average distribution is going to be obtained by sampling an exponential distribution. The properties of the sample average distribution are to be compared to the expected properties by virtue of the central limit theorem. In the basic inferential data analysis part, the ToothGrowth data is to be analyzed.</p>
+
+<h3>Sample Average Distribution of the Exponential Distribution</h3>
+
+<p>Let \(X\) be a random variable with an exponential distribution. Then, the probability density function (pdf) of this random variable is given by [1] \[f(x)=\lambda e^{-\lambda x} \ \text{for} \ \lambda > 0 \ \text{and} \ 0 \leq x < \infty\] \(\lambda\) is the rate parameter. The mean and the variance of the exponential random variable are given as follows: \[\mu = \frac{1}{\lambda}, \ \sigma^{2} = \frac{1}{\lambda^{2}}\] The lifetimes of electronic components and the waiting times between rare events are among the models built using the exponential distribution [2].</p>
+
+<p>A sample plot for the pdf of the exponential distribution with \(\lambda = 0.2\) is given in the Fig. 1.</p>
+
+<p>As can be observed in Fig.1, the pdf has its maximum value equal to \(\lambda\) at \(x=0\). The function decays to zero at a rate given by \(\lambda\). For the specific case of \(\lambda=0.2\), the pdf becomes practically zero at \(x=30\).</p>
+
+<p>Now, the sample average distribution is to be created by sampling the exponential distribution. Each time, 40 exponentials will be sampled and the average of them will be taken to obtain a sample for the sample average distribution. A total of 1000 samplings will be carried out.</p>
+
+<p>The sample average distribution is expected to be centered around the mean of the original exponential population with a mean of \[\frac{1}{\lambda}=\frac{1}{0.2}=5\] The mean of the sample average distribution is 5.0271264 which is very close to the expected mean. This closeness can also be observed in the Fig.2. The sample average distribution mean and the exponentially distributed population mean are very near to each other, i.e. the red vertical line and the blue vertical line are almost overlapping.</p>
+
+<p>In the Fig. 3, the points one sample standard deviation away from the sample mean are shown with red vertical lines. The points one theoretical standard deviation away from the sample mean are shown with blue vertical lines. They are almost overlapping. The closeness of the standard deviations observed in the Fig. 3 can be proven using numerical values of the variances as well. The theoretical variance of the sample average distribution is given by \[\frac{\sigma^{2}}{n}=\frac{\frac{1}{\lambda^{2}}}{n}\] The numerical value of the theoretical variance is 0.625. The variance of the sample average distribution is 0.631142. They are close to each other.</p>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk sample_avg_histogram_mean"/></p>
+
+<p>The histogram and the density estimate are similar to a normal distribution. The central limit theorem states that the sample average distribution is similar to a normal distribution if the sample size is big enough. Here, the sample average distribution looks like a normal distribution to the extent permitted by the sample size being equal to 40. As the sample size increases, the sample average distribution will look like a normal distribution more and more.</p>
+
+<p>In the Fig.4, the similarity between the theoretical probability density function and the sample average probability density function can easily be detected.</p>
+
+<h3>Basic Inferential Data Analysis</h3>
+
+<p>In this part, the ToothGrowth data in the R datasets package will be analysed. The data will be explored and summed up first. Then, the effect of supplementaries and the dose on the tooth growth will be examined using confidence intervals and hypothesis tests.</p>
+
+<p>The summary and the structure of the data set are obtained.</p>
+
+<pre><code>##       len        supp         dose      
+##  Min.   : 4.20   OJ:30   Min.   :0.500  
+##  1st Qu.:13.07   VC:30   1st Qu.:0.500  
+##  Median :19.25           Median :1.000  
+##  Mean   :18.81           Mean   :1.167  
+##  3rd Qu.:25.27           3rd Qu.:2.000  
+##  Max.   :33.90           Max.   :2.000
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    60 obs. of  3 variables:
+##  $ len : num  4.2 11.5 7.3 5.8 6.4 10 11.2 11.2 5.2 7 ...
+##  $ supp: Factor w/ 2 levels &quot;OJ&quot;,&quot;VC&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+##  $ dose: num  0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 ...
+</code></pre>
+
+<p>The unique dose values are 0.5, 1, 2. To have a quick overview 
+of the correlations in the data, exploratory box plots are created.</p>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAEgCAMAAABvm5EPAAAAolBMVEUAAAAAADoAAGYAOjoAOmYAOpAAZpAAZrY6AAA6ADo6AGY6OgA6Ojo6OpA6ZrY6kJA6kLY6kNtmAABmADpmAGZmOgBmOpBmZgBmZjpmZmZmtttmtv+QOgCQOjqQOmaQkDqQtpCQ29uQ2/+2ZgC2Zjq2Zma2kDq225C2/7a2///bkDrbtmbb25Db29vb/7bb/9vb////tmb/25D//7b//9v///9kp0W7AAAACXBIWXMAAAsSAAALEgHS3X78AAAMv0lEQVR4nO2di3rbxhGFITkqZadKCkZp61KxHbFtLMRpeMP7v1r3AlKkCBJ7mb3OOfliitid2Rn8u9gFSQBND7FUkzoAKI0AnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqkAnqmCg//Pi3vVaVtVw6KJuMo5d3fw66ZpZl07vNvcN22/++W53z4OoeiizYeXQ51Xbe5vX/q320XV9ez1bde+2TAiUWP4J65Oc9/Ob55zyH153thleYC/W8kIRdbfiwZ1lCKf9Uz0gUXX3H5uxR//emru/tvuxL+r9bt7sX96+fef8r3MTmxRm6WTv4mNv7+Te2X36evj18fPrxt64e43UU16XsstG/Xm5lfp59Vhr8pn/VJXWmvbEDrNfdnKXZ449+28aXRjsuZGtXdNXiP+5rlru9nuSabdNAux5x9Wy4X4r+3uVl0r/1C9vhMw2rUIUVRRf6uOKit0M7VZOZGdXNf595f3X37ojjYId7JuN/tD7vOlMhQeZ/ter5xK33/0GryspP5xTs88952MMIPchRv1t6wpK11PwXvEi0b17pUtif76d9njZASyUzc6eVFBZCmJqONRp4PuRLcW/VpuVk700U3W6T5+/Nh2xxtEVqLuN+FQbOn+It589/Pi9XCnnOr5RoOf6QansifJXYa2SJ67cqMbuG+U99XVFLzBDyNedrRehi0ONwv1RuR22uv3ebzp9TPVPYder+ts3n+5X5wm3+uOLurfvhx6/d23016vyuU4UZXUP87p2eS+yCD31xEva0YY8dv57T9aPWX1Muznftn8daZ6vfxjOz/MczoPPQ3p5OU6R21WTkTV33WdrZjmXrqjDcLdRk1vh3lOvxE1VmJ2O57jRSDfx5vjh9zliE+cu1pvHM3xU6l7n851OrxoTibWukeVjGp6KcvcDeUNXqwm/ceVhZOcwGeZu6HwyR1TATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTATxTuYBvyhH9/ipHE4n47AQP2zgKF2HxuQN8bp6pBPCFeaYSwBfmmUrlg/dYxFQI3ngXlA/eo9kKwRuHAPCpg0gUAsCnDiJRCACfOohEIdQH3kJVg58QwBfmmUoAX5hnKtUHHnO8UQgAnzqIRCEAfOogEoUA8KmDSBQCwKcOIlEI3uA39+p7gJG7L2aQ/IR8I6w498kEhrux6/v2Wtoml2eENec+mcD+cRuHx26Y2Xr9HoxMnu045p6H8hjxlPspXrN5j/jQc7x82In3PFcmeJrcQ6mIVX2h4FN4pgohAHiHmboa8LFXKddCCVnc6yf8LHM63EUEn13uFiFQLO6WIvPNQ44LnAkRLO5qzd3odG7d1nlKM6Waczc+nfPr9fnPCmOiyT2RCE7nZPYd09M5gtxDCadzcZqN5ZkqBIAPIoAnr5prs7E8jzdnKuMI8X188CBiNlc1eAsBvLdHats4Anhvj562+c8K2Xj2aq5q8Fn0NyLPpr9SAfh0zQb2fN0hwKdrNrBngM+12cCeKwVPKYA3qlcfeAsVBJ6mOYDXqgd8qR/Z5j8rZON5vLl8wRuHdj1c22bJqloq9hyfMXgqR5S16wFv7wXgg4gl+NEjNBPwbrOTiWOP0tF6GPFBBPDkjihVEHia5gA+sGOAp3dEKYD39jhpizk+pEOAt6sN8N4eJ20BPqRDgLernSl4+w9geXxka5zlROr5gs+gkSzBe7iiC8qimVDGZYCnGqUAH6URgCdoJpSx14LPrHit9v/IdeDGrssF75+7rfIBv/3p2TCWi66LneMJcg9lHAH8+U1eDFQJeP/cQxlHONR3rWEsF10XC54g91DGocEPN+70nOOtTK84igueJPfDxun1i2FYdvVcjHEeT9CMbXE+4PU8Nz7bGd6sv1jwBLlPRGFrbF3PxfjkUH9+d27zW3cXCp4k94koLEuJvPiu6k1v1l8oeJLcJ6KwLCXy4jvHVz7iryrUgwryAb8/4I0tbQ1v1l8seILcbZUP+H4pz2W72UjXNnVdLHiC3G2VD/j9yvar0adYo6eoxYInyH0iCstS+3ouxrp496R6/d2389s0y1Oam+eKF3cEuU9EYVlqX8/FeF+8FJ14pm/WfCq5wJH7plrwBLlPRHFe6vatpZ18V/U66eWsYvAXZZr7RBTnpSTg45zOde8+8ANvmvtEFOel+YC/8mOE7Vx9ezVyt/5KwPvnbquMVvUjE9y06gBPkHso41inc7aqBHxZP8QwnhIsPsCxVR3gCXK3Lc7ndO7yR5PGrosFT5C7bXE+4AlcFwueoBnbYoAftwV4y3ouxkPx7qm5+5/t74wrAe+fu21xPuB3T+3mYWX3/VQt4Alyt1U+4MUpjUje9sSmDvAEudsqH/C613eMR7xX7rbKB7yc58Z/b2jsmhK8l6yD8s/dtjgj8P6uywVPEbJdMcCP2wK8ZT0XY1mMS6g8c7ctdurEtipxxHu4KuIDHBoLP4cAT9BMiQ4BnqCZEh3SgadakAF8FIcu7TmsPayayRm8Ye7hepyxYo14wmZyBm/oGeCj+wV4sxAAnqAZ62ISCz+HAE/QjHUxiYWfQ8zxBM2U6BDgCZop0SHAEzTj4Yb6E/oj117FVLbcwGNV79IMwFMoD/Dx/MYH7/jBdGgBfBA1o3+amsQQwAcRwJNXBXgaAXwQATx5VYCnEcAHEcCTVwV4GnmDd75nu7Mcf781crbsG6FR7pWCD3UHZ3eFOtCcyyz3SsG737M9lOKBN8u9UvA0Iz7/PjIm1iOe5p7tZYI3y71W8CS2hYI38swHvMPXTZRJJ+1vI7nj27lAzWTS7EXPAB9JAG8boUPx1QvIqwdvlnutc7x+dIebbRBFHPFGudcK/vID1rM45oZt1iT3asFT2JYK3sQzwAdqxkMA71pMZVv16Zy9SQwlAh/wzAbgKZrDebx3EAAfSQBP0RzAewcB8PkJ4F2Lg9nGET6rdy0OZhtHUcBnqvrA5zbHx23YWACfIgiADyCANxLApwgC4AMI4I1UH3gLYVXvWqyvIpE/QRp5TFPxyU+p5txNwKsriDY/2Nsmlz/4anM3Ab95WJ1cP5boo6hD80Gqjsk99wz6hTf4+c2vn2Svf+B3tax77hWAV09inPXriNfHTyjmqt419yrAB7GN0yxO51yLg9naNOP+pVdk8Bl8J3cUjFdxMNs4wnm8a3Ew2zgCeNfiYLZxBPCuxcFs4wjgXYuD2cYRwLsWX7fNXx7ZVZ57rFOyTH2Fkn2MMSzorJM0A/CuFnTWSZoBeFcLOuskzQC8qwWddZJmAN7Vgs46STMA72pBZ52kGYB3taCzhooVwDMVwDMVwDMVwDMVwDMVwDMVwDMVwDMVwDNVcPBd0zT6IV6bD+cXpFhIPwtMXs20bkYvYM1B2/k+Mpn3yBU4l2S7c+QzMBdWFm8UGnwn9sN2rm737wm+71r9Tyf35zJL8rJzdjP159IKy9qmk/T6Pvqb9xfupW+kwOD1daYauS94Odh3vzzrZwfsnwWYl2S6Ok0RqIXd8uaL3c5Zy95l17feKDB4/YzG4SjtCV7uSwF/5LGP2Uj2Td0x1eNsLMA47JyLT88wUmjwR8c9X/DqMN/uXWYp2Sk1D3kcthn19jvn8vNyjBQFPM2IF+PpTz3oCQILo9cRr2RxLLbeOcPCyVkFzfH97tNvhx2b+xyvFBD85t4z/+Cr+lt5/6BW0vKfnLuP7eAy21V9O6zqZbK7T8FO57y5hz+PX+tFjni58VmLKA0nMNmfx0uKnV3CluA7da1Mxqt6KFcBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBPFMBfFKl+5U4wCcVX/BrdTGx/HGx+H/7+Fn+Jnl4qV7befPdzwv5Iq8U0Hti/y64EoOXl550swP4+d1qfbt/SRtZBC1bQXuhXu5Ww56Q77oYVwemBq8vNDuAX6gLofVL2sjCS6IWh3r1rPKfhqu/1Q45eoZxOKU+1G/u5VF9D14mv1wML4kjCy518cxyIV/UFeBqT6jLq2PMc6nB9+oysyPww60P2I14uWU44kdRYvDy2kKZrki8k5P7TL3TL2kji6CTOX7YE8O78I2nHvFLvZbtmubHRzHi/6kOd/qleu2ejlf1y8OqPkruqcGf6GiBAwUWwDNVVuCheAJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pgJ4pvo/hypsNA1dRn4AAAAASUVORK5CYII=" alt="plot of chunk box_plots"/></p>
+
+<p>The boxplot in the Fig.5 suggests that the median tooth length for the OJ supp is 
+greater than that for the VC supp. However, the VC supp has a wider range of tooth length. The boxplot in the Fig. 6 indicates that as the dose increases, the tooth length increases too.</p>
+
+<p>Now, these exploratory observations will be checked using hypothesis testing. It is assumed that the population underlying the tooth length data has a normal (Gaussian) distribution. The OJ supp group and the VC supp group will be compared to each other using a two-sided t test. The two groups are assumed to be independent and to have different variances.</p>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len_OJ and len_VC
+## t = 1.9153, df = 55.309, p-value = 0.06063
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -0.1710156  7.5710156
+## sample estimates:
+## mean of x mean of y 
+##  20.66333  16.96333
+</code></pre>
+
+<p>The null hypothesis and the alternative hypothesis of the two-sided t test for the supp groups are as follows: \[H_{0}: \text{true difference in means is equal to zero.}\]  \[H_{a}: \text{true difference in means is not equal to zero.}\] The p-value of the two-sided t test is 0.0606345. This p-value is greater than 0.05. Then, the alternative hypothesis is rejected. The two-sided t test states that the mean lengths of the OJ supp group and VC supp group are not significantly different from each other. Hence, it is concluded that the supp type does not have a significant effect on the tooth length.</p>
+
+<p>Now, the effect of the dose on the tooth length is to be examined. First, dose 1.0 and dose 0.5 are to be compared to each other to determine if the mean tooth length differs between these two doses.</p>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len_1 and len_05
+## t = 6.4766, df = 37.986, p-value = 6.342e-08
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  6.753323      Inf
+## sample estimates:
+## mean of x mean of y 
+##    19.735    10.605
+</code></pre>
+
+<p>The null hypothesis and the alternative hypothesis of the one-sided t test for the dose 1.0 and dose 0.5 groups are as follows: \[H_{0}: \text{true difference in means is equal to zero.}\]  \[H_{a}: \text{true difference in means is greater than zero.}\] The p-value of the two-sided t test is \(6.3415036 &times; 10<sup>-8</sup>\). This p-value is significantly smaller than 0.05. Hence, the null hypothesis is rejected. The dose 1.0 mean length is significantly greater than the dose 0.5 mean length.</p>
+
+<p>Now, dose 2.0 and dose 1.0 are to be compared to each other to determine if the mean tooth length differs between these two doses.</p>
+
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  len_2 and len_1
+## t = 4.9005, df = 37.101, p-value = 9.532e-06
+## alternative hypothesis: true difference in means is greater than 0
+## 95 percent confidence interval:
+##  4.17387     Inf
+## sample estimates:
+## mean of x mean of y 
+##    26.100    19.735
+</code></pre>
+
+<p>The null hypothesis and the alternative hypothesis of the one-sided t test for the dose 2.0 and dose 1.0 groups are as follows: \[H_{0}: \text{true difference in means is equal to zero.}\]  \[H_{a}: \text{true difference in means is greater than zero.}\] The p-value of the two-sided t test is \(9.5321476 &times; 10<sup>-6</sup>\). This p-value is significantly smaller than 0.05. Hence, the null hypothesis is rejected. The dose 2.0 mean length is significantly greater than the dose 1.0 mean length.</p>
+
+<p>Hence, the t tests conclude that the dose factor has a significant effect on the tooth length. Specifically, as the dose increases, the mean tooth length increases too.</p>
+
+<h3>Appendix</h3>
+
+<pre><code class="r"># x values for the pdf f(x)
+x &lt;- seq(0, 30, length.out=50000)
+fx &lt;- dexp(x, rate = 0.2) # pdf of the exponential distribution
+# 1000*40 samples will be taken from the exponential distribution
+num_of_samples &lt;- 1000*40
+lambda &lt;- 0.2 # rate of the exponential distribution
+# 1000*40 sample vector from the exponential distribution
+exp_vector &lt;- rexp(n=num_of_samples, rate=lambda)
+num_rows &lt;- 1000 # number of rows
+num_columns &lt;- 40 # number of columns
+# the vector is cast into a 1000x40 matrix
+sampling_matrix &lt;- matrix(exp_vector, num_rows, num_columns)
+# take the average of each row of the matrix
+sample_avg_dist &lt;- apply(sampling_matrix, 1, mean)
+par(mfrow=c(2, 2)) # 2x2 plot window
+the_cex &lt;- 0.70 # legend size
+main_cex &lt;- 0.90 # title size
+xlab &lt;- &quot;x&quot;
+ylab &lt;- &quot;pdf(x)&quot;
+# plot the exponential pdf
+plot(x, fx, xlab=xlab, ylab=ylab, type=&quot;l&quot;)
+title(&quot;Fig.1 exponential distribution, rate=0.2&quot;, cex.main=main_cex)
+# the estimate to the sample average distribution density
+the_density &lt;- density(sample_avg_dist)
+library(MASS) # the library MASS is loaded
+# the histogram of the sample average distribution is produced
+truehist(sample_avg_dist, nbins=&quot;FD&quot;, col=&quot;white&quot;, xlab=&quot;sample average&quot;, ylab=&quot;pdf&quot;)
+# the density estimate is added to the plot
+points(the_density, pch=20, cex=0.5)
+# a red vertical line at the mean of the sample average distribution
+abline(v=mean(sample_avg_dist), col=&quot;red&quot;)
+# a blue vertical line at the mean of the exponentially distributed population
+abline(v=5, col=&quot;blue&quot;)
+legend(&quot;topright&quot;, legend=c(&quot;sample&quot;, &quot;population&quot;, &quot;density&quot;), 
+col=c(&quot;red&quot;, &quot;blue&quot;, &quot;black&quot;), pch=15, cex = the_cex, bty=&quot;n&quot;)
+title(&quot;Fig.2 histogram, mean lines&quot;, cex.main=main_cex)
+# the histogram of the sample average distribution is produced
+truehist(sample_avg_dist, nbins=&quot;FD&quot;, col=&quot;white&quot;, xlab=&quot;sample average&quot;, ylab=&quot;pdf&quot;)
+# the density estimate is added to the plot
+points(the_density, pch=20, cex=0.5)
+# a red vertical line at sample mean + sample sd
+abline(v=mean(sample_avg_dist) + sd(sample_avg_dist), col=&quot;red&quot;)
+# a red vertical line at sample mean - sample sd
+abline(v=mean(sample_avg_dist) - sd(sample_avg_dist), col=&quot;red&quot;)
+# a blue vertical line at sample mean + theoretical sd
+abline(v=mean(sample_avg_dist) + sqrt(1/(lambda^2)/num_columns), col=&quot;blue&quot;)
+# a blue vertical line at sample mean - theoretical sd
+abline(v=mean(sample_avg_dist) - sqrt(1/(lambda^2)/num_columns), col=&quot;blue&quot;)
+legend(&quot;topright&quot;, legend=c(&quot;sample sd&quot;, &quot;theoretical sd&quot;, &quot;density&quot;), 
+       col=c(&quot;red&quot;, &quot;blue&quot;, &quot;black&quot;), pch=15, cex = the_cex, bty=&quot;n&quot;)
+title(&quot;Fig.3 histogram, sd lines&quot;, cex.main=main_cex)
+# the normal distribution predicted by the central limit theorem
+theoretical_normal &lt;- rnorm(n=1000, mean=5, sd=((1/lambda)/sqrt(num_columns)))
+# the normal densiy predicted by the central limit theorem
+theoretical_density &lt;- density(theoretical_normal)
+# the maximum value of the y axis
+y_max &lt;- max(max(theoretical_density$y), max(the_density$y))
+# plot the theoretical and the sample average densities for comparison
+plot(theoretical_density, pch=20, col=&quot;red&quot;, ylim=c(0, y_max), 
+     xlab=&quot;sample average&quot;, ylab=&quot;pdf&quot;, main = &quot;&quot;)
+points(the_density, type=&quot;l&quot;, col=&quot;black&quot;)
+legend(&quot;topright&quot;, legend=c(&quot;theoretical&quot;, &quot;sample&quot;), 
+       col=c(&quot;red&quot;, &quot;black&quot;), pch=15, cex = the_cex, bty=&quot;n&quot;)
+title(&quot;Fig.4 theoretical vs. sample densities&quot;, cex.main=main_cex)
+summary(ToothGrowth) # data summary
+str(ToothGrowth) # data structure
+# boxplots for checking correlations among length, dose and supp
+with(ToothGrowth,{
+     par(mfrow=c(1,2))
+     boxplot(len ~ supp, xlab=&quot;supp&quot;, ylab=&quot;length&quot;, main=&quot;Fig.5 Variation of length
+             with respect to supp&quot;, cex.main=0.7)
+     boxplot(len ~ dose, xlab=&quot;dose&quot;, ylab=&quot;length&quot;, main=&quot;Fig.6 Variation of length
+             with respect to dose&quot;, cex.main=0.7)
+     })
+library(dplyr) # load the package dplyr
+# OJ supp group is created
+group_OJ &lt;- filter(ToothGrowth, supp == &quot;OJ&quot;)
+# VC supp group is created
+group_VC &lt;- filter(ToothGrowth, supp == &quot;VC&quot;)
+len_OJ &lt;- group_OJ$len # OJ group lengths
+len_VC &lt;- group_VC$len # VC group lengths
+# two-sided t test is applied
+t_test_supp &lt;- t.test(len_OJ, len_VC, alternative=&quot;two.sided&quot;, paired=FALSE,
+                      var.equal=FALSE)
+t_test_supp
+group_05 &lt;- filter(ToothGrowth, dose==0.5) # dose 0.5 group
+group_1 &lt;- filter(ToothGrowth, dose==1.0) # dose 1.0 group
+len_05 &lt;- group_05$len # 0.5 group lengths
+len_1 &lt;- group_1$len # 1.0 group lengths
+# one-sided t test is applied
+t_test_dose &lt;- t.test(len_1, len_05, alternative=&quot;greater&quot;, paired=FALSE, var.equal=FALSE)
+t_test_dose
+group_2 &lt;- filter(ToothGrowth, dose==2.0) # dose 2.0 group
+len_2 &lt;- group_2$len # 2.0 group lengths
+# one-sided t test applied
+t_test_dose2 &lt;- t.test(len_2, len_1, alternative=&quot;greater&quot;, paired=FALSE, var.equal=FALSE)
+t_test_dose2
+</code></pre>
+
+<h3>References</h3>
+
+<p>[1] Montgomery, Douglas C. and Runger, George C. (2014), <em>Applied Statistics and Probability for Engineers</em>, 6th ed., Wiley.</p>
+
+<p>[2] Wasserman, Lary (2003), <em>All of Statistics: A Concise Course in Statistical Inference</em>, Springer.</p>
+
+</body>
+
+</html>
